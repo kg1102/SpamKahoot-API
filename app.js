@@ -20,7 +20,7 @@ app.post('/send', (req,res) => {
     if(!isNaN(id,amount)){
         if(id == '' || nick == '' || amount == ''){
             res.status(400);
-            res.send(JSON.stringify({status:"error", reason: "algum campo está vazio!"}, null, 4));
+            res.send(JSON.stringify({status:"error", reason: "Some field is empty!"}, null, 4));
         }else{
             if(!amount > 50){
                 api.spam(id, `${nick}`, amount);
@@ -28,12 +28,12 @@ app.post('/send', (req,res) => {
                 res.send(JSON.stringify({status:"success", bots_sended: amount, nickname: nick, amount: amount}, null, 4));
             }else{
                 res.status(400);
-                res.send(JSON.stringify({status:"error", reason: "maximum amount bots is 50"}, null, 4));
+                res.send(JSON.stringify({status:"error", reason: "Maximum amount bots is 50"}, null, 4));
             }
         }
     }else{
         res.status(400);
-        res.send(JSON.stringify({status:"error", reason: "o número de quantidade ou id não são números!"}, null, 4));
+        res.send(JSON.stringify({status:"error", reason: "The quantity number or id are not numbers!"}, null, 4));
     }
 });
 
