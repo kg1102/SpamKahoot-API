@@ -9,6 +9,10 @@ app.use(express.static('public'));
 app.use(express.urlencoded({extended:false}));
 app.use(express.json());
 
+app.get('/', (req,res)=>{
+    res.send('Hello World');
+});
+
 app.post('/send', (req,res) => {
     var { id, nick, amount } = req.body;
     if(!isNaN(id,amount)){
