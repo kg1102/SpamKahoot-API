@@ -22,9 +22,14 @@ app.post('/send', (req,res) => {
             res.status(400);
             res.send(JSON.stringify({status:"error", reason: "algum campo está vazio!"}, null, 4));
         }else{
-            api.spam(id, `${nick}`, amount);
-            res.status(201);
-            res.send(JSON.stringify({status:"success", bots_sended: amount, nickname: nick, amount: amount}, null, 4));
+            if(amount >= 50){
+                api.spam(id, `${nick}`, amount);
+                res.status(201);
+                res.send(JSON.stringify({status:"success", bots_sended: amount, nickname: nick, amount: amount}, null, 4));
+            }else{
+                res.status(400);
+                res.send(JSON.stringify({status:"error", reason: "maximum amount bots is 50"}, null, 4));
+            }
         }
     }else{
         res.status(400);
