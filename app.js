@@ -1,8 +1,8 @@
 const express        = require('express');
 const app            = express();
-const port           = process.env.PORT || 443;
 const KahootSpam     = require('kahoot-spam');
-var   api            = KahootSpam;
+const port           = process.env.PORT || 443;
+var api              = KahootSpam;
 
 app.set('view engine', 'ejs');
 app.use(express.static('public'));

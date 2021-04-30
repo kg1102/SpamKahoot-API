@@ -1,43 +1,23 @@
 {
-  "name": "spamkah",
+  "name": "spamkahoot-api",
   "version": "1.0.0",
-  "description": "Uma simples API para spammar salas do kahoot.it",
+  "description": "",
   "main": "app.js",
-  "dependencies": {
-    "cacheable-lookup": "^5.0.4",
-    "cacheable-request": "^7.0.1",
-    "clone-response": "^1.0.2",
-    "decompress-response": "^6.0.0",
-    "defer-to-connect": "^2.0.1",
-    "ejs": "^3.1.6",
-    "end-of-stream": "^1.4.4",
-    "express": "^4.17.1",
-    "get-stream": "^5.2.0",
-    "got": "^11.8.2",
-    "http-cache-semantics": "^4.1.0",
-    "http2-wrapper": "^1.0.3",
-    "json-buffer": "^3.0.1",
-    "json-stringify-safe": "^5.0.1",
-    "kahoot-spam": "^1.1.8",
-    "kahoot.js-updated": "^2.4.0",
-    "keyv": "^4.0.3",
-    "lowercase-keys": "^2.0.0",
-    "mimic-response": "^1.0.1",
-    "normalize-url": "^4.5.0",
-    "once": "^1.4.0",
-    "p-cancelable": "^2.1.0",
-    "pump": "^3.0.0",
-    "quick-lru": "^5.1.1",
-    "random-seed": "^0.3.0",
-    "random-useragent": "^0.5.0",
-    "resolve-alpn": "^1.1.2",
-    "responselike": "^2.0.0",
-    "wrappy": "^1.0.2",
-    "ws": "^7.4.5"
-  },
   "scripts": {
-    "start": "node app.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "KaioGomes",
-  "license": "ISC"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kg1102/SpamKahoot-API.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kg1102/SpamKahoot-API/issues"
+  },
+  "homepage": "https://github.com/kg1102/SpamKahoot-API#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "kahoot-spam": "^1.1.8"
+  }
 }
