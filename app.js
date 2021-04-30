@@ -5,11 +5,11 @@ const KahootSpam     = require('kahoot-spam');
 const port           = process.env.PORT || 443;
 var api              = KahootSpam;
 
+app.use(cors());
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
 app.use(express.urlencoded({extended:false}));
 app.use(express.json());
-app.use(express.cors());
 
 app.get('/', (req,res)=>{
     res.send('Hello World');
