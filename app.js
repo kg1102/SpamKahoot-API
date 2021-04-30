@@ -39,6 +39,10 @@ app.post('/send', (req,res) => {
     }
 });
 
+app.use((req, res) => {
+    res.status(404).end(res.send(JSON.stringify({status:"error", reason: "Page Not Found"}, null, 4)));
+});
+
 app.listen(port, ()=>{
     console.log(`[1] Servidor iniciado com sucesso na porta @ `, port);
 });
