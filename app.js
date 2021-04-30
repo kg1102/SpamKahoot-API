@@ -1,4 +1,5 @@
 const express        = require('express');
+const cors           = require('cors');
 const app            = express();
 const KahootSpam     = require('kahoot-spam');
 const port           = process.env.PORT || 443;
@@ -8,6 +9,7 @@ app.set('view engine', 'ejs');
 app.use(express.static('public'));
 app.use(express.urlencoded({extended:false}));
 app.use(express.json());
+app.use(express.cors());
 
 app.get('/', (req,res)=>{
     res.send('Hello World');
