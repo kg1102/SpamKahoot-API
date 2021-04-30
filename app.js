@@ -12,7 +12,7 @@ app.use(express.urlencoded({extended:false}));
 app.use(express.json());
 
 app.get('/', (req,res)=>{
-    res.send('Hello World');
+    res.send(JSON.stringify({status:"success", code: 200, message: "Hello World"}, null, 4));
 });
 
 app.post('/send', (req,res) => {
@@ -28,7 +28,7 @@ app.post('/send', (req,res) => {
         }
     }else{
         res.status(400);
-        res.send(JSON.stringify({status:"error", reason: "The quantity number or id are not numbers!"}, null, 4));
+        res.send(JSON.stringify({status:"error", reason: "The amount number or id are not numbers!"}, null, 4));
     }
 });
 
