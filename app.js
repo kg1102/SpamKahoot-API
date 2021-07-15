@@ -13,34 +13,37 @@ app.use(express.json());
 
 app.use((req, res, next) => { //Cria um middleware onde todas as requests passam por ele
     if ((req.headers["x-forwarded-proto"] || "").endsWith("http")) //Checa se o protocolo informado nos headers é HTTP
-        res.redirect(`https://${req.hostname}${req.url}`); //Redireciona pra HTTPS
-    else //Se a requisição já é HTTPS
-        next(); //Não precisa redirecionar, passa para os próximos middlewares que servirão com o conteúdo desejado
+        return res.redirect(`https://${req.hostname}${req.url}`); //Redireciona pra HTTPS
+    //Se a requisição já é HTTPS
+    return next(); //Não precisa redirecionar, passa para os próximos middlewares que servirão com o conteúdo desejado
 });
 
-app.get('/', (req,res)=>{
-    res.send(JSON.stringify({status:"success", code: 200, message: "Hello World"}, null, 4));
+app.get('/', (req, res)=>{
+    return res.status(200).send(JSON.stringify({status:"success", code: 200, message: "Hello World"}, null, 4));
 });
 
-app.post('/send', (req,res) => {
-    var { id, nick, amount } = req.body;
-    if(!isNaN(id,amount)){
-        if(id == '' || nick == '' || amount == ''){
-            res.status(400);
-            res.send(JSON.stringify({status:"error", reason: "Some field is empty!"}, null, 4));
-        }else{
-            api.spam(id, `${nick}`, amount);
-            res.status(201);
-            res.send(JSON.stringify({status:"success", bots_sended: amount, nickname: nick, amount: amount}, null, 4));
+app.post('/send', (req, res) => {
+    try {
+        const { id, nick, amount } = req.body;
+        
+        if(!isNaN(id,amount)){
+            if(id == '' || nick == '' || amount == ''){
+                return res.status(400).send(JSON.stringify({status:"error", reason: "Some field is empty!"}, null, 4));
+            }else{
+                api.spam(id, `${nick}`, amount);
+                return res.status(201).send(JSON.stringify({status:"success", bots_sended: amount, nickname: nick, amount: amount}, null, 4));
+            }
+        } else {
+            return res.status(400).send(JSON.stringify({status:"error", reason: "The amount number or id are not numbers!"}, null, 4));
         }
-    }else{
-        res.status(400);
-        res.send(JSON.stringify({status:"error", reason: "The amount number or id are not numbers!"}, null, 4));
-    }
+    } catch (err) {
+        console.error(err);
+        return res.status(500).send({ message: 'undefined' });
+    };
 });
 
 app.use((req, res) => {
-    res.status(404).end(res.send(JSON.stringify({status:"error", reason: "Page Not Found"}, null, 4)));
+    return res.status(404).end(res.send(JSON.stringify({status:"error", reason: "Page Not Found"}, null, 4)));
 });
 
 app.listen(port, ()=>{
